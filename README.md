@@ -40,7 +40,7 @@ E框架的目的是让开发不必从零开始开发，让开发者只关注自�
 
 ## eclipse
  
-* 直接在e目录下运行gradlew  eclipse 生成eclipse项目；导入e目录；运行e-example-single项目下的SingleApplicationMain文件；进入http://localhost；
+* 直接在e目录下运行gradlew  eclipse 生成eclipse项目；导入e目录；运行e-example-single项目下的SingleApplicationMain文件；进入http://localhost:8080；
 * 多系统启动可按下面顺序来启动各项目，最好等前一个项目启动完后再启动下一下项目
 
 	- e-example-ms-db
@@ -54,7 +54,7 @@ E框架的目的是让开发不必从零开始开发，让开发者只关注自�
 
 ## idea
 
-* 直接在e目录下运行gradlew  eclipse 生成eclipse项目；导入e目录；运行SingleApplicationMain文件；进入http://localhost；
+* 直接在e目录下运行gradlew  eclipse 生成eclipse项目；导入e目录；运行SingleApplicationMain文件；进入http://localhost:8080；
 
 # 开发说明
 

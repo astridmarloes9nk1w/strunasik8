@@ -18,19 +18,22 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.h2.server.web.WebServlet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
+import com.loy.e.common.annotation.Author;
 import com.loy.e.core.repository.impl.DefaultRepositoryFactoryBean;
 import com.loy.e.core.web.filter.LoginRedirectFilter;
 
@@ -43,41 +46,41 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * 
- * @author Loy Fu qq群 540553957  http://www.17jee.com
- * @since 1.8
- * @version 3.0.0
- * 
- */
+@Author(author = "Loy Fu", website = "http://www.17jee.com", contact = "qq群 540553957")
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAutoConfiguration()
-@ComponentScan(basePackages = { "com.xx", "com.loy" })
-@EnableJpaRepositories(repositoryFactoryBeanClass = DefaultRepositoryFactoryBean.class, basePackages = {
-        "com.xx", "com.loy" })
+@ComponentScan(basePackages = { "com.loy", "com.xx" })
+@EnableJpaRepositories(repositoryFactoryBeanClass = DefaultRepositoryFactoryBean.class, basePackages = { "com.loy",
+		"com.xx" })
 @EnableCaching
 @EnableSwagger2
-@EntityScan({ "com.xx", "com.loy" })
-public class SingleApplicationMain {
-    static final Log logger = LogFactory.getLog(SingleApplicationMain.class);
+@EntityScan({ "com.loy", "com.xx" })
+@EnableScheduling
+public class SingleApplicationMain extends SpringBootServletInitializer {
+	static final Log logger = LogFactory.getLog(SingleApplicationMain.class);
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(SingleApplicationMain.class, args);
-    }
+	@Autowired
+	JdbcTemplate jdbcTemplate;
 
-    @Bean
-    public FilterRegistrationBean loginRedirectFilterRegistration() {
+	public static void main(String[] args) throws Exception {
+		SpringApplication.run(SingleApplicationMain.class, args);
+	}
 
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(new LoginRedirectFilter());
-        registration.addUrlPatterns("/login");
-        registration.addUrlPatterns("/login.html");
-        registration.setName("loginRedirectFilter");
-        registration.setOrder(-1000);
-        return registration;
-    }
-    @Bean
+	@Bean
+	public FilterRegistrationBean loginRedirectFilterRegistration() {
+
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new LoginRedirectFilter());
+		registration.addUrlPatterns("/login");
+		registration.addUrlPatterns("/login.html");
+		registration.setName("loginRedirectFilter");
+		registration.setOrder(-1000);
+		return registration;
+	}
+
+
+	@Bean
 	public Docket api() {
 		ParameterBuilder tokenPar = new ParameterBuilder();
 		List<springfox.documentation.service.Parameter> pars = new ArrayList<springfox.documentation.service.Parameter>();
@@ -90,10 +93,5 @@ public class SingleApplicationMain {
 				.build().globalOperationParameters(pars);
 
 	}
-    @Bean
-    ServletRegistrationBean h2servletRegistration(){
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
-        registrationBean.addUrlMappings("/console/*");
-        return registrationBean;
-    }
+
 }

@@ -1,4 +1,4 @@
 FROM java:8
-VOLUME /tmp/upm
-ADD e-example-ms-upm-3.0.0-SNAPSHOT.jar e-example-ms-upm.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/e-example-ms-upm.jar"]
+ADD *.jar /e-example-ms-upm.jar
+ADD application.yml /econf/
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Dspring.config.location=/econf/application.yml","/e-example-ms-upm.jar"]

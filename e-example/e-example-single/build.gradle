@@ -75,5 +75,5 @@ task buildDockerImage(type: DockerBuildImage) {
     }
     
     inputDir = file('build/docker')
-    tag = 'com.loy/upm'
+    tag = 'com.loy/singleupm'
 }

@@ -4,9 +4,9 @@ e:
     
 spring:
    application:
-            name: gateaway
+            name: gateway
 server:
-  port: 80
+  port: 8080
 zuul: 
   routes: 
       upm:
@@ -38,7 +38,8 @@ zuul:
         sensitive-headers: true
         stripPrefix: true
         path: /demo/**
-        url: http://localhost:38080/
+        #url: http://localhost:38080/
+        serviceId: demo
         
       demo-ui:
         sensitive-headers: true

@@ -1,5 +1,4 @@
 FROM java:8
-VOLUME /tmp/gateway
-ADD e-example-ms-gateway-3.0.0-SNAPSHOT.jar e-example-ms-gateway.jar
-RUN bash -c 'touch /e-example-ms-gateway.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dfile.encoding=UTF-8","-jar","/e-example-ms-gateway.jar"]
+ADD *.jar /e-example-ms-gateway.jar
+ADD application.yml /econf/ 
+ENTRYPOINT ["java","-Xdebug","-Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n","-Djava.security.egd=file:/dev/./urandom","-jar","-Dspring.config.location=/econf/application.yml","/e-example-ms-gateway.jar"]

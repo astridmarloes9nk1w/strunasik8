@@ -28,7 +28,7 @@ dependencies {
 	
 	compile ("com.17jee:e-core-static:${eversion}")
 	compile ("com.17jee:e-upm-service:${eversion}")
-	compile ("com.17jee:e-upm-ui:${eversion}")
+	compile ("com.17jee:e-upm-ui:3.0.1.12")
 	compile ("com.17jee:e-log-service:${eversion}")
 	compile ("com.17jee:e-log-ui:${eversion}")
 	compile ("com.h2database:h2:1.4.193")

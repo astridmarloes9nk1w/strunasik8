@@ -1,3 +1,6 @@
+e: 
+ conf: 
+  loginSuccessUrl: http://localhost:8080/
 server:
   port: 9999
   context-path: /uaa

@@ -27,14 +27,14 @@ E框架的目的是让开发不必从零开始开发，让开发者只关注自�
 ##### 单体服务构建
 
 * 运行start-single-service.bat 文件，这里需要等待下载相关jar包
-* 构建成功后在浏览器中输入http://localhost  进入页面
+* 构建成功后在浏览器中输入http://localhost:8080  进入页面
 
 ##### 微服务构建
 
 * 在e目录下运行gradlew build ，成功后进行下一步
 * 在e目录下运行start-micro-service,也可以运行start-micro-service-w(启动Swing界面，可方便查看各项目日志)；
 * 此运行方式只作演示与快速启动，实际部署、启动根据自己需求作相应调整
-* 运行成功后在浏览器中输入http://localhost  进入页面
+* 运行成功后在浏览器中输入http://localhost:8080  进入页面
 
 # 开发环境
 

@@ -13,6 +13,9 @@
 */
 package com.loy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.h2.server.web.WebServlet;
@@ -32,8 +35,10 @@ import com.loy.e.core.repository.impl.DefaultRepositoryFactoryBean;
 import com.loy.e.core.web.filter.LoginRedirectFilter;
 
 import io.swagger.annotations.ApiOperation;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -73,11 +78,18 @@ public class SingleApplicationMain {
         return registration;
     }
     @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).paths(PathSelectors.any())
-                .build();
-    }
+	public Docket api() {
+		ParameterBuilder tokenPar = new ParameterBuilder();
+		List<springfox.documentation.service.Parameter> pars = new ArrayList<springfox.documentation.service.Parameter>();
+		tokenPar.name("Authorization").description("令牌").modelRef(new ModelRef("string")).parameterType("header")
+				.required(false).build();
+		pars.add(tokenPar.build());
+
+		return new Docket(DocumentationType.SWAGGER_2).select()
+				.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).paths(PathSelectors.any())
+				.build().globalOperationParameters(pars);
+
+	}
     @Bean
     ServletRegistrationBean h2servletRegistration(){
         ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());

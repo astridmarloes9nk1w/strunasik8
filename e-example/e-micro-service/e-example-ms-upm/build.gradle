@@ -22,6 +22,7 @@ dependencies {
 	 compile ("com.17jee:e-upm-service:${eversion}")
 	 compile ("com.17jee:e-security-jwt:${eversion}")
 	 compile ("com.17jee:e-cloud-authorize:${eversion}")
+	 compile ("com.17jee:e-cache-hibernate-ehcache:${eversion}")
 	 runtime("mysql:mysql-connector-java:${mysqlVersion}")
 	 compile ("com.17jee:e-data-permission-service:${eversion}")
 	 runtime ("com.h2database:h2:1.4.193")

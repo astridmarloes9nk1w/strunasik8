@@ -57,9 +57,18 @@ spring:
     test-while-idle: true
   jpa:
     properties:
+      javax:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
       hibernate:
-        #dialect: com.loy.e.core.dialect.EMySQL5InnoDBDialect
         dialect: org.hibernate.dialect.H2Dialect
+        generate_statistics: true
+        cache:
+          use_second_level_cache: true
+          use_query_cache: true
+          region:
+            factory_class: com.loy.hibernate.ehcache.SingletonEhCacheRegionFactory
     showSql: false
     hibernate:
       ddlAuto: update

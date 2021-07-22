@@ -1,22 +1,22 @@
 # Winria
 
-## Aria2 Client for Windows
+## Aria2 原生Win客户端
 
-## What's News in 0.2?
+## 0.2更新内容
 
-* Add Torrent support
+* 支持通过种子下载文件
 
-* Add Download Path Setting
+* 增加下载路径设置
 
-* Add Spider
+* 增加小蜘蛛（用于爬取某个页面的链接）
 
-* New Icon
+* 新的图标
 
-## Screenshot
+## 截图
 
 ![Screenshot](Screenshots/03.png)
 
-## Thanks for
+## 致谢
 
 * [Aria2](https://aria2.github.io)
 
